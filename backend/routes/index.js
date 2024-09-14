@@ -1,10 +1,14 @@
 const listController = require("../controller/list.controller")
 const cardController = require("../controller/card.controller")
+const authController = require("./authRoutes")
+const boardController = require("./boardRoutes")
 
 const router = (app) => {
 
     app.use("/", listController);
     app.use("/", cardController);
+    app.use("/", authController);
+    app.use("/", boardController);
 
     app.all("*", (req, res, next) => {
         const err = new Error("Not found");
