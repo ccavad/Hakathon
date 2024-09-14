@@ -12,6 +12,11 @@ const listSchema = new mongoose.Schema(
                 ref: "CardModel",
             },
         ],
+        board: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Board",
+            required: true,
+        },
     },
     {
         timestamps: true,
