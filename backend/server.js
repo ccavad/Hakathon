@@ -7,6 +7,7 @@ const app = express();
 // const socket = require("./Utils/socket");
 // const User = require("./model/userModel");
 const connect = require("./utils/db");
+const router = require("./routes/index")
 
 const PORT = process.env.PORT || 8080
 
@@ -18,6 +19,8 @@ app.use(
         origin: "*",
     })
 );
+
+router(app)
 
 
 
