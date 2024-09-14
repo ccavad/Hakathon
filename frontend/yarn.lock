@@ -1166,11 +1166,6 @@
   dependencies:
     levn "^0.4.1"
 
-"@formkit/drag-and-drop@^0.1.6":
-  version "0.1.6"
-  resolved "https://registry.npmjs.org/@formkit/drag-and-drop/-/drag-and-drop-0.1.6.tgz"
-  integrity sha512-wZyxvk7WTbQ12q8ZGvLoYner1ktBOUf+lCblJT3P0LyqpjGCKTfQMKJtwToKQzJgTbhvow4LBu+yP92Mux321w==
-
 "@humanwhocodes/module-importer@^1.0.1":
   version "1.0.1"
   resolved "https://registry.npmjs.org/@humanwhocodes/module-importer/-/module-importer-1.0.1.tgz"
