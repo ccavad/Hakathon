@@ -1,3 +1,5 @@
+export const minColumnWidth = "300px";
+
 export const editableStyle = {
   fontWeight: "bold",
   color: "White",
@@ -28,5 +30,3 @@ export const boardCardStyle = {
 export const addCardInputStyle = {
   color: "white",
 };
-
-export const minColumnWidth = "300px";

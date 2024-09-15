@@ -5,7 +5,7 @@ import MainContent from "./MainContent"; // Import MainContent
 import { Outlet } from "react-router-dom"; // Import Outlet
 import Header from "./Header"; // Import Header
 
-const Dashboard = () => {
+export const Dashboard = () => {
   return (
     <Box display="flex" flexDirection="column" height="100vh">
       {/* Header at the top */}
@@ -21,5 +21,3 @@ const Dashboard = () => {
     </Box>
   );
 };
-
-export default Dashboard;

@@ -8,7 +8,7 @@ const boards = [
   { id: 3, name: "Board 3" },
 ];
 
-const Boards = () => {
+export const Boards = () => {
   return (
     <Box p={4} bg="#232b2b" minHeight="100vh">
       <SimpleGrid columns={[1, 2, 3]} spacing={4}>
@@ -19,5 +19,3 @@ const Boards = () => {
     </Box>
   );
 };
-
-export default Boards;
