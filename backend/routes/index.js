@@ -1,14 +1,16 @@
 const listController = require("../controller/list.controller")
 const cardController = require("../controller/card.controller")
 const authController = require("./authRoutes")
-const boardController = require("./boardRoutes")
+const boardController = require("./boardRoutes");
+const verifyToken = require("../middleware/authMiddleware");
 
 const router = (app) => {
 
-    app.use("/", listController);
-    app.use("/", cardController);
+
     app.use("/", authController);
-    app.use("/", boardController);
+    app.use("/", verifyToken, listController);
+    app.use("/", verifyToken, cardController);
+    app.use("/", verifyToken, boardController);
 
     app.all("*", (req, res, next) => {
         const err = new Error("Not found");
