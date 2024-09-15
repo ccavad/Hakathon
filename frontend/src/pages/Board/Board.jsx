@@ -35,6 +35,7 @@ import {
   editableStyle,
   minColumnWidth,
 } from "../../assets/styles/chakraStyles";
+
 export const Board = () => {
   const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();

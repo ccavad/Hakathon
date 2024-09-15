@@ -36,6 +36,6 @@ const cardSchema = new mongoose.Schema({
         timestamps: true,
     })
 
-const CardModel = mongoose.model("Card", cardSchema);
+const CardModel = mongoose.model("CardModel", cardSchema);
 
 module.exports = CardModel

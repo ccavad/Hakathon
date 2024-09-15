@@ -1,6 +1,7 @@
 const listController = require("../controller/list.controller")
 const cardController = require("../controller/card.controller")
 
+
 const authController = require("./authRoutes")
 
 const boardController = require("./boardRoutes");
