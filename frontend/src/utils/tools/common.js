@@ -1,3 +1,15 @@
+export const sortObjectByKeysOrder = (keysOrder, obj) => {
+  const sortedObj = {};
+
+  keysOrder.forEach((key) => {
+    if (obj.hasOwnProperty(key)) {
+      sortedObj[key] = obj[key];
+    }
+  });
+
+  return sortedObj;
+};
+
 export const capitalizeFirstLetter = (string) => {
   if (typeof string !== "string") return "";
   return string.charAt(0).toUpperCase() + string.slice(1);

@@ -4,10 +4,13 @@ export const editableStyle = {
 };
 
 export const boardColumnStyle = {
-  bg: "black",
+  bg: "orange",
   borderRadius: 5,
   padding: 4,
   width: "400px",
+  p: 4,
+  rounded: "md",
+  minWidth: minColumnWidth,
 };
 
 export const boardCardStyle = {
@@ -16,8 +19,14 @@ export const boardCardStyle = {
   borderRadius: "10",
   padding: 2,
   border: "1px solid",
+  p: 4,
+  boxShadow: "md",
+  rounded: "md",
+  position: "relative",
 };
 
 export const addCardInputStyle = {
   color: "white",
 };
+
+export const minColumnWidth = "300px";
