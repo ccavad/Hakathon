@@ -1,10 +1,24 @@
 const listController = require("../controller/list.controller")
 const cardController = require("../controller/card.controller")
 
+
+const authController = require("./authRoutes")
+
+const boardController = require("./boardRoutes");
+const verifyToken = require("../middleware/authMiddleware");
+
+const inviteEmail = require("../controller/sendMail")
+
+
 const router = (app) => {
 
-    app.use("/", listController);
-    app.use("/", cardController);
+
+    app.use("/", authController);
+    app.use("/", verifyToken, listController);
+    app.use("/", verifyToken, cardController);
+    app.use("/", verifyToken, boardController);
+    app.use('/', inviteEmail)
+
 
     app.all("*", (req, res, next) => {
         const err = new Error("Not found");

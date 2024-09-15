@@ -30,3 +30,4 @@ export const boardCardStyle = {
 export const addCardInputStyle = {
   color: "white",
 };
+
