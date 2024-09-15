@@ -8,9 +8,10 @@ exports.register = async (req, res) => {
         const { username, email, password } = req.body;
 
         // Check if the user already exists
-        const existingUser = await User.findOne({ email });
+        const existingUser = await User.findOne({ $or: [{ email }, { username }] });
+        // const existingUser = await User.findOne({ email });
         if (existingUser) {
-            return res.status(400).json({ message: 'Email already in use' });
+            return res.status(400).json({ message: 'This user exists' });
         }
 
         // Create a new user
@@ -33,6 +34,7 @@ exports.login = async (req, res) => {
         if (!user) {
             return res.status(400).json({ message: 'Invalid email or password' });
         }
+
 
 
         // Generate a JWT token
