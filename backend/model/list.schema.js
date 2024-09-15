@@ -6,12 +6,12 @@ const listSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
-        cardId: [
-            {
-                type: mongoose.Types.ObjectId,
-                ref: "CardModel",
-            },
-        ],
+        // cardId: [
+        //     {
+        //         type: mongoose.Types.ObjectId,
+        //         ref: "Card",
+        //     },
+        // ],
         board: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "Board",
