@@ -1,11 +1,13 @@
-import "./App.css";
 import { ChakraProvider } from "@chakra-ui/react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import { Home } from "./pages/Home/Home";
 import { Login } from "./pages/Login/Login";
 import { Register } from "./pages/Register/Register";
 import Dashboard from "./pages/Dashboard/Dashboard";
-import Boards from "./pages/Boards/Boards"; // Import the Boards component
+import Boards from "./pages/Boards/Boards";
+import { PrivateRoute } from "./PrivateRoute"; // Import the PrivateRoute component
+import { NotFound } from "./pages/NotFound"; // Import the NotFound component
+import { Templates } from "./pages/Templates/Templates";
 
 function App() {
   return (
@@ -14,10 +16,15 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/dashboard" element={<Dashboard />}>
-          <Route path="/dashboard/boards" element={<Boards />} />
-          {/* Add Boards route */}
+        <Route element={<PrivateRoute />}>
+          <Route path="/dashboard" element={<Dashboard />}>
+            <Route path="/dashboard/boards" element={<Boards />} />
+            <Route path="/dashboard/templates" element={<Templates />} />
+            {/* Nested Boards route */}
+          </Route>
         </Route>
+        {/* Catch-all route for undefined paths */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </ChakraProvider>
   );

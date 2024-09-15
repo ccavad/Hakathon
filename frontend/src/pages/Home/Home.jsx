@@ -31,6 +31,18 @@ export const Home = () => {
         border="1px solid rgba(255, 255, 255, 0.3)" // Light border
         p={6}
       >
+      <Link
+          as={RouterLink}
+          to="/"
+          fontSize="3xl"
+          fontWeight="bold"
+          mb={6}
+          color="#353839"
+          textDecoration="none" // Remove underline
+          _hover={{ textDecoration: "none" }} // Ensure no underline on hover
+        >
+          TRELLO
+        </Link>
         {/* Login Button */}
         <Link as={RouterLink} to="/login" width="100%">
           <Button

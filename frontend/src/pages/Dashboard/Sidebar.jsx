@@ -28,6 +28,26 @@ const Sidebar = () => {
       >
         Boards
       </Link>
+
+      <Link
+        as={RouterLink}
+        to="/dashboard/templates"
+        display="block"
+        color="#fff"
+        px={4}
+        py={2}
+        borderRadius="md"
+        _hover={{ 
+          bg: "gray.700", // Background color on hover
+          color: "white", // Text color on hover
+          textDecoration: "none" // Remove underline on hover
+        }}
+        _active={{ 
+          bg: "gray.600" // Background color when the link is active (clicked)
+        }}
+      >
+        Templates
+      </Link>
     </Box>
   );
 };

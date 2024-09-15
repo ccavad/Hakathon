@@ -1,35 +1,70 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
   Button,
   FormControl,
   FormLabel,
   Input,
-  Flex,
-  Text,
-  Link,
   useToast,
+  Link,
+  Text,
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
 import HomeBackground from "../../assets/HomeBackground.jpg"; // Import the background image
+import { login } from "../../services/apiService"; // Adjust the path as needed
 
 export const LoginForm = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset, // Function to reset the form fields
   } = useForm();
   const toast = useToast();
+  const navigate = useNavigate(); // Initialize navigate
+  const [loading, setLoading] = useState(false); // Manage loading state
 
-  const onSubmit = (data) => {
-    console.log(data); // Log form data to the console
-    toast({
-      title: "Submitted",
-      description: "Form data has been submitted",
-      status: "info",
-      position: "bottom-right",
-    });
+  const onSubmit = async (data) => {
+    setLoading(true); // Set loading to true when starting the request
+    try {
+      const response = await login(data);
+
+      // Check if the response status indicates success
+      if (response.status >= 200 && response.status < 300) {
+        const { token } = response.data; // Extract token from response
+        localStorage.setItem("authToken", token); // Store token in localStorage
+
+        toast({
+          title: "Login Successful",
+          description: "You have been successfully signed in.",
+          status: "success",
+          position: "bottom-right",
+        });
+        reset(); // Clear the form fields
+        setTimeout(() => {
+          navigate("/dashboard");
+        }, 1500);
+      } else {
+        toast({
+          title: "Login Failed",
+          description: "Invalid credentials or an error occurred.",
+          status: "error",
+          position: "bottom-right",
+        });
+      }
+    } catch (error) {
+      toast({
+        title: "Login Failed",
+        description:
+          error.response?.data?.message ||
+          "An error occurred during login. Please try again.",
+        status: "error",
+        position: "bottom-right",
+      });
+    } finally {
+      setLoading(false); // Set loading to false when request is completed
+    }
   };
 
   return (
@@ -70,11 +105,12 @@ export const LoginForm = () => {
           TRELLO
         </Link>
 
-        <FormControl mb={4} isInvalid={errors.username}>
-          <FormLabel color="white">Username</FormLabel>
+        <FormControl mb={4} isInvalid={errors.email}>
+          <FormLabel color="white">Email</FormLabel>
           <Input
-            placeholder="Enter username"
-            {...register("username", { required: "Username is required" })}
+            type="email"
+            placeholder="Enter email"
+            {...register("email", { required: "Email is required" })}
             borderColor="whiteAlpha.600"
             color="white"
             _placeholder={{ color: "whiteAlpha.800" }}
@@ -102,9 +138,24 @@ export const LoginForm = () => {
           color="black"
           borderRadius="8px"
           _hover={{ backgroundColor: "gray.200" }}
+          isLoading={loading} // Show loading spinner while submitting
         >
-          Submit
+          Sign in
         </Button>
+
+        <Text mt={4} color="white">
+          Don't have an account yet?
+          <Link
+            marginLeft={2}
+            as={RouterLink}
+            to="/register"
+            color="#232b2b"
+            fontWeight="bold"
+            _hover={{ textDecoration: "underline" }}
+          >
+            Sign up
+          </Link>
+        </Text>
       </Box>
     </Box>
   );
