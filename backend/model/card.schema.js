@@ -26,7 +26,8 @@ const cardSchema = new mongoose.Schema({
         default: null
     },
     members: {
-        type: [User],
+        type: [mongoose.Schema.Types.ObjectId],
+        ref: "User",
         default: undefined
     }
 },
